@@ -149,6 +149,13 @@ class Leaf {
     }
 }
 
+// Helper for responsive scale - CORREGIDO PARA MÓVIL
+function getMobileScale() {
+    if (window.innerWidth < 480) return 0.3;  // Móviles pequeños: 30%
+    if (window.innerWidth < 768) return 0.4;  // Tablets/móviles: 40%
+    return 1;  // Desktop: 100%
+}
+
 class RoseHead {
     constructor(stem) {
         this.stem = stem;
@@ -189,10 +196,14 @@ class RoseHead {
         ctx.translate(origin.x, origin.y);
         ctx.rotate(angle);
 
-        const scale = this.bloomBy > 0 ? 0.2 + (this.bloomBy * 1.5) : 0;
-        if (scale <= 0) { ctx.restore(); return; }
+        // Apply Mobile Scale - AHORA REDUCE MÁS EN MÓVIL
+        const mobScale = getMobileScale();
+        const baseScale = this.bloomBy > 0 ? 0.2 + (this.bloomBy * 1.5) : 0;
+        const finalScale = baseScale * mobScale;
 
-        ctx.scale(scale, scale);
+        if (finalScale <= 0) { ctx.restore(); return; }
+
+        ctx.scale(finalScale, finalScale);
 
         // Calyx
         ctx.fillStyle = '#1b5e20';
@@ -243,11 +254,19 @@ class RoseHead {
 class RoseEntity {
     constructor(d, index, total) {
         this.index = index;
-        const fanAngle = 60;
+
+        // Responsive Fan Logic
+        const isMobile = window.innerWidth < 768;
+        const isSmallMobile = window.innerWidth < 480;
+        const fanAngle = isSmallMobile ? 45 : (isMobile ? 50 : 60);
+
         const startAngle = -fanAngle / 2;
         const step = fanAngle / (total - 1);
         const myAngle = startAngle + (index * step);
-        const len = canvas.height * 0.6 + Math.random() * 100;
+
+        // Responsive Length Logic - TALLOS MÁS CORTOS EN MÓVIL
+        const baseLen = isSmallMobile ? canvas.height * 0.35 : (isMobile ? canvas.height * 0.40 : canvas.height * 0.6);
+        const len = baseLen + Math.random() * (isMobile ? 40 : 100);
 
         this.stem = new Stem(canvas.width / 2, canvas.height + 20, len, myAngle, (Math.random() - 0.5) * 1.5);
         this.head = new RoseHead(this.stem);
@@ -276,7 +295,9 @@ class RoseEntity {
         const dx = mx - tip.x;
         const dy = my - tip.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        return dist < 60;
+        // Adjust hit area for mobile - MÁS GRANDE PARA FACILITAR CLICK
+        const hitRadius = window.innerWidth < 480 ? 60 : (window.innerWidth < 768 ? 70 : 60);
+        return dist < hitRadius;
     }
 }
 
