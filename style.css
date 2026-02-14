@@ -720,13 +720,13 @@ p {
         height: 100%;
     }
 
-    /* Escalar las rosas MÁS PEQUEÑAS en móvil (25% menos) */
+    /* Escalar las rosas 50% MÁS PEQUEÑAS en móvil */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-3deg) scale(1.1);
+            transform: rotate(-3deg) scale(0.55);
         }
         100% {
-            transform: rotate(3deg) scale(1.1);
+            transform: rotate(3deg) scale(0.55);
         }
     }
 
@@ -778,13 +778,13 @@ p {
         height: 100%;
     }
 
-    /* Rosas MÁS PEQUEÑAS en móviles pequeños (25% menos) */
+    /* Rosas 50% MÁS PEQUEÑAS en móviles pequeños */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(0.9);
+            transform: rotate(-2deg) scale(0.45);
         }
         100% {
-            transform: rotate(2deg) scale(0.9);
+            transform: rotate(2deg) scale(0.45);
         }
     }
 
@@ -838,10 +838,10 @@ p {
 
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(1.0);
+            transform: rotate(-2deg) scale(0.5);
         }
         100% {
-            transform: rotate(2deg) scale(1.0);
+            transform: rotate(2deg) scale(0.5);
         }
     }
 
