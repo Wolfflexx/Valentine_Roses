@@ -35,10 +35,17 @@ h2 {
     margin-bottom: 1rem;
     text-shadow: 0 4px 20px rgba(100, 0, 0, 0.5);
     letter-spacing: 1px;
+    /* Fluid Typography: Scales between 2rem and 4rem depending on viewport */
+    font-size: clamp(2rem, 5vw + 1rem, 4rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 p {
-    font-size: 1.3rem;
+    /* Fluid Typography: Scales between 1rem and 1.3rem */
+    font-size: clamp(1rem, 2vw + 0.5rem, 1.3rem);
     line-height: 1.6;
     margin-bottom: 1.5rem;
     opacity: 0.9;
@@ -84,7 +91,9 @@ p {
     background: linear-gradient(135deg, rgba(50, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
     border: 1px solid rgba(255, 50, 50, 0.3);
     color: #ffd6d6;
-    padding: 16px 45px;
+    /* Fluid PAdding & Width */
+    padding: clamp(12px, 2vh, 18px) clamp(20px, 4vw, 45px);
+    width: min(350px, 85vw);
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
     cursor: pointer;
@@ -387,8 +396,10 @@ p {
     position: absolute;
     bottom: -50px;
     /* Hide stem start slightly below screen */
+    /* Hide stem start slightly below screen */
     left: 50%;
-    width: 200px;
+    /* Fluid Width for Roses */
+    width: clamp(100px, 15vw, 200px);
     /* Define fixed width for calculation stability */
     height: 85vh;
     /* Taller to reach up */
@@ -523,8 +534,9 @@ p {
     background: linear-gradient(135deg, #1f0505 0%, #000 100%);
     padding: 3rem;
     border-radius: 8px;
+    border-radius: 8px;
     max-width: 600px;
-    width: 90%;
+    width: min(90%, 600px);
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 50px rgba(100, 0, 0, 0.4);
@@ -654,6 +666,10 @@ p {
    MOBILE RESPONSIVE
    ========================= */
 
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+
 @media (max-width: 768px) {
 
     /* GENERAL 768px */
@@ -674,30 +690,6 @@ p {
         /* Prevent horizontal scroll */
     }
 
-    /* TYPOGRAPHY SCALING */
-    h1 {
-        font-size: 2.5rem !important;
-        /* Smaller title */
-        line-height: 1.2;
-    }
-
-    p {
-        font-size: 1.1rem;
-        /* Smaller text */
-        padding: 0 10px;
-    }
-
-    /* BUTTONS */
-    .btn {
-        width: 80%;
-        /* Wider button for touch */
-        max-width: 350px;
-        padding: 18px 30px;
-        /* Taller touch target */
-        font-size: 1rem;
-        letter-spacing: 2px;
-    }
-
     /* ROSES CONTAINER - HANDLING */
     #roses-container {
         height: 100vh;
@@ -706,13 +698,6 @@ p {
         /* Lock to viewport */
         top: 0;
         left: 0;
-    }
-
-    .rose-wrapper {
-        width: 120px;
-        /* Narrower rose area */
-        height: 80vh;
-        /* Adjust height */
     }
 
     /* Keep massive bloom but scale it down slightly for smaller screens */
@@ -728,8 +713,6 @@ p {
 
     /* MODAL ADJUSTMENTS */
     .modal-content {
-        width: 90%;
-        padding: 2rem;
         max-height: 80vh;
         overflow-y: auto;
         /* scrollable modal content */
@@ -737,50 +720,14 @@ p {
 }
 
 @media (max-width: 480px) {
-    /* MOBILE PHONES 480px */
-
-    h1 {
-        font-size: 2rem !important;
-        margin-bottom: 1rem;
-    }
-
-    p {
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    .btn {
-        width: 90%;
-        font-size: 0.95rem;
-        padding: 16px 20px;
-    }
-
-    /* Further adjust roses for tiny screens */
-    .rose-wrapper {
-        width: 100px;
-        bottom: -30px;
-    }
+    /* MÓVILES PEQUEÑOS */
 
     /* Make modal cleaner */
-    .modal-content {
-        padding: 1.5rem;
-        width: 95%;
-    }
-
     .close-modal {
         top: 10px;
         right: 15px;
         font-size: 1.8rem;
     }
 
-    #modal-title {
-        font-size: 1.5rem;
-    }
-
-    /* Final Message Text Size */
-    #final-message-container p {
-        font-size: 1.5rem;
-        /* Smaller for mobile */
-        margin-bottom: 1.5rem;
-    }
+    /* Final Message Text Size handled by clamp now */
 }
