@@ -75,7 +75,6 @@ p {
     transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), visibility 2s;
     padding: 2rem;
     z-index: 10;
-    overflow: hidden;
 }
 
 .screen.hidden {
@@ -197,12 +196,6 @@ p {
 }
 
 /* ESTRUCTURA DEL JARDÍN (GARDEN) */
-#garden {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
 #roses-container {
     display: block;
     /* Remove flex */
@@ -698,7 +691,8 @@ p {
     }
 
     /* Ajustar título */
-    h1, h2 {
+    h1,
+    h2 {
         font-size: clamp(1.5rem, 6vw, 3rem);
         padding: 0 0.5rem;
     }
@@ -716,19 +710,25 @@ p {
         width: min(300px, 90vw);
     }
 
-    /* ESCALAR EL CANVAS COMPLETO PARA REDUCIR TAMAÑO DE ROSAS */
-    #garden {
-        transform: scale(0.6);
-        transform-origin: center center;
+    /* CANVAS SIN ESCALAR - OCUPA TODO EL VIEWPORT */
+    #garden-canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    #roses-container {
+        width: 100%;
+        height: 100%;
     }
 
     /* Escalar las rosas proporcionalmente en móvil */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-3deg) scale(0.55);
+            transform: rotate(-3deg) scale(1.5);
         }
+
         100% {
-            transform: rotate(3deg) scale(0.55);
+            transform: rotate(3deg) scale(1.5);
         }
     }
 
@@ -758,7 +758,8 @@ p {
     /* MÓVILES PEQUEÑOS */
 
     /* Títulos aún más pequeños */
-    h1, h2 {
+    h1,
+    h2 {
         font-size: clamp(1.3rem, 6vw, 2.5rem);
     }
 
@@ -769,19 +770,25 @@ p {
         padding: 10px 20px;
     }
 
-    /* ESCALAR AÚN MÁS EL CANVAS EN MÓVILES PEQUEÑOS */
-    #garden {
-        transform: scale(0.5);
-        transform-origin: center center;
+    /* CANVAS SIN ESCALAR - OCUPA TODO EL VIEWPORT */
+    #garden-canvas {
+        width: 100%;
+        height: 100%;
     }
 
-    /* Rosas 50% MÁS PEQUEÑAS en móviles pequeños */
+    #roses-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Rosas más pequeñas en móviles pequeños */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(0.45);
+            transform: rotate(-2deg) scale(1.2);
         }
+
         100% {
-            transform: rotate(2deg) scale(0.45);
+            transform: rotate(2deg) scale(1.2);
         }
     }
 
@@ -818,13 +825,14 @@ p {
         padding: 1rem;
     }
 
-    /* ESCALAR EL CANVAS EN LANDSCAPE */
-    #garden {
-        transform: scale(0.55);
-        transform-origin: center center;
+    /* CANVAS SIN ESCALAR EN LANDSCAPE */
+    #garden-canvas {
+        width: 100%;
+        height: 100%;
     }
 
     #roses-container {
+        width: 100%;
         height: 90vh;
     }
 
@@ -834,10 +842,11 @@ p {
 
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(0.5);
+            transform: rotate(-2deg) scale(1.3);
         }
+
         100% {
-            transform: rotate(2deg) scale(0.5);
+            transform: rotate(2deg) scale(1.3);
         }
     }
 
