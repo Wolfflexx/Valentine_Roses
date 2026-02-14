@@ -33,6 +33,60 @@ body {
     align-items: center;
     text-align: center;
     perspective: 100px;
+    position: relative;
+}
+
+/* LUNA EN EL CIELO */
+body::before {
+    content: '';
+    position: fixed;
+    top: 8%;
+    right: 10%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #fff9e6 0%, #ffe6b3 40%, #e6d9c4 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 30px rgba(255, 249, 230, 0.6),
+        0 0 60px rgba(255, 249, 230, 0.3),
+        inset -8px -8px 20px rgba(200, 180, 140, 0.3);
+    z-index: 1;
+    pointer-events: none;
+    animation: moonGlow 8s ease-in-out infinite;
+}
+
+@keyframes moonGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(255, 249, 230, 0.6),
+            0 0 60px rgba(255, 249, 230, 0.3),
+            inset -8px -8px 20px rgba(200, 180, 140, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 0 40px rgba(255, 249, 230, 0.8),
+            0 0 80px rgba(255, 249, 230, 0.4),
+            inset -8px -8px 20px rgba(200, 180, 140, 0.3);
+    }
+}
+
+/* NEBLINA SUTIL */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(200, 200, 220, 0.03) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 3;
+    animation: mistFlow 20s ease-in-out infinite;
+}
+
+@keyframes mistFlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.5; }
 }
 
 /* TIPOGRAFÍA */
@@ -43,7 +97,6 @@ h2 {
     margin-bottom: 1rem;
     text-shadow: 0 4px 20px rgba(100, 0, 0, 0.5);
     letter-spacing: 1px;
-    /* Fluid Typography: Scales between 2rem and 4rem depending on viewport */
     font-size: clamp(2rem, 5vw + 1rem, 4rem);
 }
 
@@ -52,7 +105,6 @@ h2 {
 }
 
 p {
-    /* Fluid Typography: Scales between 1rem and 1.3rem */
     font-size: clamp(1rem, 2vw + 0.5rem, 1.3rem);
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -61,7 +113,6 @@ p {
     font-weight: 300;
 }
 
-/* PANTALLAS (SCREENS) */
 /* PANTALLAS (SCREENS) */
 .screen {
     position: absolute;
@@ -83,7 +134,6 @@ p {
     visibility: hidden;
     pointer-events: none;
     z-index: 0;
-    /* Send to back */
 }
 
 .screen.active {
@@ -91,7 +141,6 @@ p {
     visibility: visible;
     pointer-events: all;
     z-index: 100;
-    /* Ensure active screen is on top */
 }
 
 /* BOTONES */
@@ -99,7 +148,6 @@ p {
     background: linear-gradient(135deg, rgba(50, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
     border: 1px solid rgba(255, 50, 50, 0.3);
     color: #ffd6d6;
-    /* Fluid PAdding & Width */
     padding: clamp(12px, 2vh, 18px) clamp(20px, 4vw, 45px);
     width: min(350px, 85vw);
     max-width: 100%;
@@ -114,8 +162,6 @@ p {
     backdrop-filter: blur(4px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
-
-    /* FIX CLICKABILITY */
     z-index: 1000;
     pointer-events: auto;
 }
@@ -153,11 +199,9 @@ p {
 /* Firefly Particles - AHORA CON PARPADEO */
 .particle-dust {
     background: radial-gradient(#ffffb3, transparent 70%);
-    /* Amarillo pálido */
     box-shadow: 0 0 5px #ffd700;
     border-radius: 50%;
     opacity: 0.8;
-    /* ANIMACIÓN DE PARPADEO agregada */
     animation: floatParticle linear infinite, twinkle 3s ease-in-out infinite;
 }
 
@@ -175,7 +219,6 @@ p {
 
 .particle-petal {
     background: rgba(139, 0, 0, 0.7);
-    /* Rojo oscuro sangre */
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
     animation: floatParticle 15s linear infinite, swayPetal 5s ease-in-out infinite alternate;
 }
@@ -185,15 +228,12 @@ p {
         transform: translateY(0) translateX(0);
         opacity: 0;
     }
-
     10% {
         opacity: 0.8;
     }
-
     90% {
         opacity: 0.8;
     }
-
     100% {
         transform: translateY(-120vh) translateX(30px);
         opacity: 0;
@@ -204,7 +244,6 @@ p {
     0% {
         transform: rotate(0deg) translateX(-20px);
     }
-
     100% {
         transform: rotate(45deg) translateX(20px);
     }
@@ -213,23 +252,107 @@ p {
 /* ESTRUCTURA DEL JARDÍN (GARDEN) */
 #roses-container {
     display: block;
-    /* Remove flex */
     width: 100%;
     max-width: 100%;
-    /* Allow full width for fanning */
     height: 85vh;
-    /* Taller to reach up */
     position: relative;
     z-index: 5;
     overflow: hidden;
-    /* Prevent horizontal scroll from fanning */
     pointer-events: none;
-    /* Allow clicks to pass through to canvas/children */
     background: transparent;
-    /* TRANSPARENT so canvas is visible */
 }
 
-/* GRASS LAYER CONTAINER */
+/* ================================
+   PASTO ESTÉTICO DE 3 CAPAS
+   ================================ */
+
+/* Capa 1: Pasto Lejano (Más Oscuro) */
+#garden::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    background: linear-gradient(to top, #0d1f0d 0%, #1a2e1a 60%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* Capa 2: Pasto Medio */
+#garden::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12vh;
+    background: linear-gradient(to top, #0f2610 0%, #1d3b1d 50%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+    clip-path: polygon(
+        0% 100%, 2% 85%, 5% 90%, 8% 80%, 12% 85%, 15% 75%, 18% 80%, 
+        22% 70%, 25% 75%, 30% 65%, 35% 70%, 40% 60%, 45% 65%, 50% 55%,
+        55% 60%, 60% 50%, 65% 55%, 70% 45%, 75% 50%, 80% 40%, 85% 45%,
+        88% 50%, 92% 45%, 95% 50%, 98% 55%, 100% 60%, 100% 100%
+    );
+}
+
+/* Capa 3: Pasto Cercano - Contenedor */
+.grass-layer-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    z-index: 8;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Briznas de Pasto Individuales */
+.grass-blade {
+    position: absolute;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to top, #1a4d1a 0%, #2d5f2d 50%, #3d7d3d 100%);
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+    animation: grassSway 4s ease-in-out infinite;
+}
+
+/* Flores Silvestres */
+.wildflower {
+    position: absolute;
+    bottom: 2vh;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: flowerGlow 3s ease-in-out infinite;
+}
+
+.wildflower.white {
+    background: radial-gradient(circle, #fff 0%, #f0f0f0 50%, transparent 100%);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+.wildflower.yellow {
+    background: radial-gradient(circle, #ffeb3b 0%, #fdd835 50%, transparent 100%);
+    box-shadow: 0 0 3px rgba(255, 235, 59, 0.6);
+}
+
+@keyframes grassSway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+@keyframes flowerGlow {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* GRASS LAYER CONTAINER (Original - Ahora decorativo) */
 #grass-layer {
     position: absolute;
     bottom: 0;
@@ -243,12 +366,9 @@ p {
 
 /* WIND ANIMATION */
 @keyframes wind-sway {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: rotate(-1.5deg);
     }
-
     50% {
         transform: rotate(1.5deg);
     }
@@ -258,20 +378,15 @@ p {
 .grass-clump {
     position: absolute;
     bottom: -15px;
-    /* Darker, desaturated gradient */
     background: linear-gradient(to top, #0a1f0a, #1a3a1a, #2f4f2f);
     width: 6px;
     border-radius: 100% 0 0 0;
-    /* Default curve */
     opacity: 0.85;
     filter: blur(0.5px) hue-rotate(-5deg) saturate(0.8);
     transform-origin: bottom center;
-
-    /* Wind Animation applied to grass */
     animation: wind-sway 8s ease-in-out infinite;
 }
 
-/* Constructing blades using shape */
 .grass-clump::before,
 .grass-clump::after {
     content: '';
@@ -293,8 +408,6 @@ p {
     opacity: 0.7;
 }
 
-/* --- VARIATIONS with Delays for Wind --- */
-
 /* TALL SIDE CLUMPS */
 .left-tall {
     left: 2%;
@@ -315,7 +428,6 @@ p {
     z-index: 7;
 }
 
-/* New & Existing Groups */
 .left-1 {
     left: 10%;
     height: 20vh;
@@ -389,21 +501,6 @@ p {
     opacity: 0.5;
 }
 
-/* Keeping a subtle base gradient for the floor */
-#garden::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    z-index: 1;
-    /* Background floor */
-    pointer-events: none;
-    background: linear-gradient(to top, #000000 0%, transparent 100%);
-    opacity: 0.8;
-}
-
 #garden-canvas {
     position: absolute;
     top: 0;
@@ -412,7 +509,6 @@ p {
     height: 100%;
     z-index: 1;
     pointer-events: auto;
-    /* ENABLE CLICKS */
     /* EFECTO GLOW/RESPLANDOR en las rosas */
     filter: drop-shadow(0 0 20px rgba(255, 80, 80, 0.4));
 }
@@ -421,29 +517,18 @@ p {
 .rose-wrapper {
     position: absolute;
     bottom: -50px;
-    /* Hide stem start slightly below screen */
-    /* Hide stem start slightly below screen */
     left: 50%;
-    /* Fluid Width for Roses */
     width: clamp(100px, 15vw, 200px);
-    /* Define fixed width for calculation stability */
     height: 85vh;
-    /* Taller to reach up */
     display: flex;
     justify-content: center;
     align-items: flex-end;
     cursor: pointer;
     z-index: 10;
-
     transform-origin: bottom center;
-    /* Pivot from bottom */
-
-    /* Animation Entry */
     opacity: 0;
-    /* transform is handled in JS for rotation */
     animation: plantGrow 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     animation-delay: calc(var(--i) * 0.1s);
-    /* Faster sequence */
 }
 
 @keyframes plantGrow {
@@ -459,17 +544,13 @@ p {
     transition: all 0.3s;
 }
 
-/* SVG STYLES */
 .rose-svg {
     width: 100%;
     height: 100%;
-    /* Permitir overflow para pétalos grandes */
     overflow: visible;
     pointer-events: none;
-    /* Let clicks pass through visual parts */
 }
 
-/* TALLO ANIMADO */
 .stem-svg {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
@@ -480,32 +561,24 @@ p {
     stroke-dashoffset: 0;
 }
 
-/* FLOWER HEAD & PETALS */
-/* FLOWER HEAD - MASSIVE BLOOM */
-/* FLOWER HEAD - MASSIVE BLOOM */
 .flower-head {
     transform-origin: 50px 120px;
     transition: transform 3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    /* Bouncy bloom */
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
 }
 
 .rose-wrapper:not(.bloomed) .flower-head {
     transform: scale(0.3);
-    /* Capullo visible pero pequeño */
 }
 
 .rose-wrapper.bloomed .flower-head {
-    /* Scale 2.5x para que sean ENORMES */
     animation: roseSwayBig 6s ease-in-out infinite alternate;
 }
 
-/* Animación separada para integrar el scale grande con el sway */
 @keyframes roseSwayBig {
     0% {
         transform: rotate(-3deg) scale(2.2);
     }
-
     100% {
         transform: rotate(3deg) scale(2.2);
     }
@@ -523,7 +596,6 @@ p {
     opacity: 0;
 }
 
-/* Stagger bloom in CSS if classes present, else reliable JS/CSS combo */
 .rose-wrapper.bloomed .petal-layer.outer .petal-svg {
     transition-delay: 0.5s;
 }
@@ -531,7 +603,6 @@ p {
 .rose-wrapper.bloomed .petal-layer.inner .petal-svg {
     transition-delay: 0.8s;
 }
-
 
 /* MODAL MEJORADO */
 .modal {
@@ -560,7 +631,6 @@ p {
 .modal-content {
     background: linear-gradient(135deg, #1f0505 0%, #000 100%);
     padding: 3rem;
-    border-radius: 8px;
     border-radius: 8px;
     max-width: 600px;
     width: min(90%, 600px);
@@ -603,8 +673,7 @@ p {
     line-height: 1.8;
 }
 
-/* OUTRO TEXT - CSS ANIMATION */
-/* OUTRO TEXT - CSS ANIMATION */
+/* OUTRO TEXT */
 #final-message-container {
     opacity: 1 !important;
     visibility: visible !important;
@@ -617,25 +686,19 @@ p {
     margin-bottom: 2rem;
     color: var(--text-accent);
     opacity: 0;
-    /* Start hidden */
     transform: translateY(10px);
-    /* Slight slide up effect */
-    /* Animation definition */
     animation: fadeInText 2s ease-in-out forwards;
     position: relative;
     z-index: 1001;
     display: block;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    /* Improve legibility */
 }
 
-/* Keyframes for smooth fade in */
 @keyframes fadeInText {
     0% {
         opacity: 0;
         transform: translateY(10px);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -647,7 +710,6 @@ p {
     position: absolute;
     pointer-events: none;
     z-index: 2;
-    /* Between Canvas and Roses */
     opacity: 0.8;
 }
 
@@ -659,7 +721,6 @@ p {
 }
 
 .particle-petal {
-    /* Style handled in JS mainly, but defaults here */
     background: #a00;
     opacity: 0.6;
     animation: fall 15s infinite ease-in;
@@ -670,11 +731,9 @@ p {
         transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
-
     50% {
         opacity: 0.8;
     }
-
     100% {
         transform: translateY(-100px) rotate(360deg);
         opacity: 0;
@@ -685,7 +744,6 @@ p {
     0% {
         transform: translateY(-10vh) rotate(0deg);
     }
-
     100% {
         transform: translateY(110vh) rotate(720deg);
     }
@@ -696,38 +754,38 @@ p {
    ========================= */
 
 @media (max-width: 768px) {
-
-    /* Mantener perspectiva más baja en móvil */
     body {
         perspective: 50px;
     }
 
-    /* Reducir padding en pantallas pequeñas */
+    /* Luna más pequeña en móvil */
+    body::before {
+        width: 50px;
+        height: 50px;
+        top: 5%;
+        right: 8%;
+    }
+
     .screen {
         padding: 1.5rem 1rem;
     }
 
-    /* Ajustar título */
-    h1,
-    h2 {
+    h1, h2 {
         font-size: clamp(1.5rem, 6vw, 3rem);
         padding: 0 0.5rem;
     }
 
-    /* Ajustar párrafos */
     p {
         font-size: clamp(0.9rem, 3vw, 1.1rem);
         padding: 0 0.5rem;
     }
 
-    /* Botones más pequeños */
     .btn {
         font-size: clamp(0.9rem, 3vw, 1.1rem);
         letter-spacing: 2px;
         width: min(300px, 90vw);
     }
 
-    /* CANVAS SIN ESCALAR - OCUPA TODO EL VIEWPORT */
     #garden-canvas {
         width: 100%;
         height: 100%;
@@ -738,18 +796,15 @@ p {
         height: 100%;
     }
 
-    /* Escalar las rosas proporcionalmente en móvil */
     @keyframes roseSwayBig {
         0% {
             transform: rotate(-3deg) scale(1.5);
         }
-
         100% {
             transform: rotate(3deg) scale(1.5);
         }
     }
 
-    /* Modal más compacto */
     .modal-content {
         padding: 2rem 1.5rem;
         width: min(95%, 600px);
@@ -763,7 +818,6 @@ p {
         font-size: 1rem;
     }
 
-    /* Texto final más pequeño */
     #final-message-container p {
         font-size: clamp(1.2rem, 4vw, 1.8rem);
         margin-bottom: 1.5rem;
@@ -772,44 +826,25 @@ p {
 }
 
 @media (max-width: 480px) {
-    /* MÓVILES PEQUEÑOS */
-
-    /* Títulos aún más pequeños */
-    h1,
-    h2 {
+    h1, h2 {
         font-size: clamp(1.3rem, 6vw, 2.5rem);
     }
 
-    /* Botones más compactos */
     .btn {
         font-size: 0.85rem;
         letter-spacing: 1px;
         padding: 10px 20px;
     }
 
-    /* CANVAS SIN ESCALAR - OCUPA TODO EL VIEWPORT */
-    #garden-canvas {
-        width: 100%;
-        height: 100%;
-    }
-
-    #roses-container {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Rosas más pequeñas en móviles pequeños */
     @keyframes roseSwayBig {
         0% {
             transform: rotate(-2deg) scale(1.2);
         }
-
         100% {
             transform: rotate(2deg) scale(1.2);
         }
     }
 
-    /* Modal ajustado */
     .modal-content {
         padding: 1.5rem 1rem;
     }
@@ -829,27 +864,18 @@ p {
         line-height: 1.6;
     }
 
-    /* Texto final más pequeño */
     #final-message-container p {
         font-size: clamp(1rem, 4.5vw, 1.5rem);
         margin-bottom: 1rem;
     }
 }
 
-/* Orientación horizontal en móvil */
 @media (max-width: 768px) and (orientation: landscape) {
     .screen {
         padding: 1rem;
     }
 
-    /* CANVAS SIN ESCALAR EN LANDSCAPE */
-    #garden-canvas {
-        width: 100%;
-        height: 100%;
-    }
-
     #roses-container {
-        width: 100%;
         height: 90vh;
     }
 
@@ -861,7 +887,6 @@ p {
         0% {
             transform: rotate(-2deg) scale(1.3);
         }
-
         100% {
             transform: rotate(2deg) scale(1.3);
         }
