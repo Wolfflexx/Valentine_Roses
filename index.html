@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solo para ti Montserrat :&#41</title>
+    <title>Solo para ti Montserrat :)</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,36 @@
     <!-- ESCENA PRINCIPAL - JARDÍN -->
     <div id="garden" class="screen hidden">
         <canvas id="garden-canvas"></canvas>
+        
+        <!-- CAPA DE PASTO FRONTAL CON BRIZNAS Y FLORES -->
+        <div class="grass-layer-front">
+            <!-- Briznas de pasto individuales -->
+            <div class="grass-blade" style="left: 5%; height: 8vh; animation-delay: 0s;"></div>
+            <div class="grass-blade" style="left: 12%; height: 7vh; animation-delay: -0.5s;"></div>
+            <div class="grass-blade" style="left: 18%; height: 9vh; animation-delay: -1s;"></div>
+            <div class="grass-blade" style="left: 25%; height: 6vh; animation-delay: -1.5s;"></div>
+            <div class="grass-blade" style="left: 32%; height: 8vh; animation-delay: -0.8s;"></div>
+            <div class="grass-blade" style="left: 38%; height: 7vh; animation-delay: -2s;"></div>
+            <div class="grass-blade" style="left: 45%; height: 9vh; animation-delay: -0.3s;"></div>
+            <div class="grass-blade" style="left: 52%; height: 7vh; animation-delay: -1.2s;"></div>
+            <div class="grass-blade" style="left: 58%; height: 8vh; animation-delay: -0.7s;"></div>
+            <div class="grass-blade" style="left: 65%; height: 6vh; animation-delay: -1.8s;"></div>
+            <div class="grass-blade" style="left: 72%; height: 9vh; animation-delay: -0.4s;"></div>
+            <div class="grass-blade" style="left: 78%; height: 7vh; animation-delay: -1.3s;"></div>
+            <div class="grass-blade" style="left: 85%; height: 8vh; animation-delay: -0.9s;"></div>
+            <div class="grass-blade" style="left: 92%; height: 7vh; animation-delay: -1.6s;"></div>
+            
+            <!-- Flores silvestres blancas y amarillas -->
+            <div class="wildflower white" style="left: 8%; animation-delay: 0s;"></div>
+            <div class="wildflower yellow" style="left: 15%; animation-delay: -0.5s;"></div>
+            <div class="wildflower white" style="left: 28%; animation-delay: -1s;"></div>
+            <div class="wildflower yellow" style="left: 42%; animation-delay: -1.5s;"></div>
+            <div class="wildflower white" style="left: 55%; animation-delay: -0.8s;"></div>
+            <div class="wildflower yellow" style="left: 68%; animation-delay: -1.2s;"></div>
+            <div class="wildflower white" style="left: 75%; animation-delay: -0.3s;"></div>
+            <div class="wildflower yellow" style="left: 88%; animation-delay: -1.7s;"></div>
+        </div>
+        
         <div class="roses-container" id="roses-container">
             <!-- Las rosas se generarán aquí con JS -->
         </div>
