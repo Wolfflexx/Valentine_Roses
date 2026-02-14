@@ -268,7 +268,10 @@ class RoseEntity {
         const baseLen = isSmallMobile ? canvas.height * 0.35 : (isMobile ? canvas.height * 0.40 : canvas.height * 0.6);
         const len = baseLen + Math.random() * (isMobile ? 40 : 100);
 
-        this.stem = new Stem(canvas.width / 2, canvas.height + 20, len, myAngle, (Math.random() - 0.5) * 1.5);
+        // CENTRAR VERTICALMENTE EN MÓVIL - Ajustar posición Y inicial
+        const startY = isMobile ? canvas.height * 0.7 : canvas.height + 20;
+
+        this.stem = new Stem(canvas.width / 2, startY, len, myAngle, (Math.random() - 0.5) * 1.5);
         this.head = new RoseHead(this.stem);
 
         this.leaves = [];
@@ -433,8 +436,9 @@ function startSequence() {
         roses.push(new RoseEntity(d, i, rosesData.length));
     });
 
-    // Create dust
-    for (let i = 0; i < 50; i++) particles.push(new Particle());
+    // Create dust - MÁS PARTÍCULAS EN MÓVIL para llenar espacio vacío
+    const particleCount = window.innerWidth < 768 ? 80 : 50;
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     // Auto-bloom first
     setTimeout(() => {
