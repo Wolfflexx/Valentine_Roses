@@ -149,10 +149,10 @@ class Leaf {
     }
 }
 
-// Helper for responsive scale - CORREGIDO PARA MÓVIL
+// Helper for responsive scale - AUMENTADO 30%
 function getMobileScale() {
-    if (window.innerWidth < 480) return 0.3;  // Móviles pequeños: 30%
-    if (window.innerWidth < 768) return 0.4;  // Tablets/móviles: 40%
+    if (window.innerWidth < 480) return 0.4;  // Era 0.3, ahora 30% más grande
+    if (window.innerWidth < 768) return 0.5;  // Era 0.4, ahora 30% más grande
     return 1;  // Desktop: 100%
 }
 
