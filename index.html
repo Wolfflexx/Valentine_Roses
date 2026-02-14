@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo para ti Montserrat :&#41</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- PANTALLA INICIAL -->
+    <div id="intro" class="screen active">
+        <div class="content">
+            <h1 class="title">Un Detalle Para ti Niña Linda</h1>
+            <p class="subtitle">Estas rosas fueron hechas con mucho cuidado y cariño ☺️, así que trátalas bien.</p>
+            <button id="start-btn" class="btn">Iniciar el viaje</button>
+        </div>
+    </div>
+
+    <!-- ESCENA PRINCIPAL - JARDÍN -->
+    <div id="garden" class="screen hidden">
+        <canvas id="garden-canvas"></canvas>
+        <div class="roses-container" id="roses-container">
+            <!-- Las rosas se generarán aquí con JS -->
+        </div>
+    </div>
+
+    <!-- MODAL DE MENSAJE -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Título</h2>
+            <p id="modal-text">Mensaje...</p>
+        </div>
+    </div>
+
+    <!-- PANTALLA FINAL -->
+    <div id="outro" class="screen hidden">
+        <div class="content">
+            <div id="final-message-container">
+                <!-- Texto final aparecerá aquí -->
+            </div>
+            <button id="repeat-btn" class="btn hidden">Repetir</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
