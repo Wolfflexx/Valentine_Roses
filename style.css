@@ -691,8 +691,7 @@ p {
     }
 
     /* Ajustar título */
-    h1,
-    h2 {
+    h1, h2 {
         font-size: clamp(1.5rem, 6vw, 3rem);
         padding: 0 0.5rem;
     }
@@ -721,14 +720,13 @@ p {
         height: 100%;
     }
 
-    /* Escalar las rosas proporcionalmente en móvil */
+    /* Escalar las rosas MÁS PEQUEÑAS en móvil (25% menos) */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-3deg) scale(1.5);
+            transform: rotate(-3deg) scale(1.1);
         }
-
         100% {
-            transform: rotate(3deg) scale(1.5);
+            transform: rotate(3deg) scale(1.1);
         }
     }
 
@@ -758,8 +756,7 @@ p {
     /* MÓVILES PEQUEÑOS */
 
     /* Títulos aún más pequeños */
-    h1,
-    h2 {
+    h1, h2 {
         font-size: clamp(1.3rem, 6vw, 2.5rem);
     }
 
@@ -781,14 +778,13 @@ p {
         height: 100%;
     }
 
-    /* Rosas más pequeñas en móviles pequeños */
+    /* Rosas MÁS PEQUEÑAS en móviles pequeños (25% menos) */
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(1.2);
+            transform: rotate(-2deg) scale(0.9);
         }
-
         100% {
-            transform: rotate(2deg) scale(1.2);
+            transform: rotate(2deg) scale(0.9);
         }
     }
 
@@ -842,11 +838,10 @@ p {
 
     @keyframes roseSwayBig {
         0% {
-            transform: rotate(-2deg) scale(1.3);
+            transform: rotate(-2deg) scale(1.0);
         }
-
         100% {
-            transform: rotate(2deg) scale(1.3);
+            transform: rotate(2deg) scale(1.0);
         }
     }
 
