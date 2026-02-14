@@ -8,7 +8,8 @@
 
 :root {
     --bg-dark: #050000;
-    --bg-gradient: radial-gradient(circle at center bottom, #2a0000 0%, #000000 80%);
+    /* GRADIENTE MEJORADO - Más capas y profundidad */
+    --bg-gradient: radial-gradient(ellipse at center bottom, #3a0000 0%, #1a0000 40%, #000000 80%);
     --text-main: #e0e0e0;
     --text-accent: #ff4d4d;
 }
@@ -149,13 +150,27 @@ p {
     z-index: 1;
 }
 
-/* Firefly Particles */
+/* Firefly Particles - AHORA CON PARPADEO */
 .particle-dust {
     background: radial-gradient(#ffffb3, transparent 70%);
     /* Amarillo pálido */
     box-shadow: 0 0 5px #ffd700;
     border-radius: 50%;
     opacity: 0.8;
+    /* ANIMACIÓN DE PARPADEO agregada */
+    animation: floatParticle linear infinite, twinkle 3s ease-in-out infinite;
+}
+
+/* ANIMACIÓN DE PARPADEO DE ESTRELLAS */
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(0.8);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
 .particle-petal {
@@ -398,6 +413,8 @@ p {
     z-index: 1;
     pointer-events: auto;
     /* ENABLE CLICKS */
+    /* EFECTO GLOW/RESPLANDOR en las rosas */
+    filter: drop-shadow(0 0 20px rgba(255, 80, 80, 0.4));
 }
 
 /* CONTENEDOR DE LA ROSA */
