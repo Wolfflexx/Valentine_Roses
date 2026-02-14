@@ -268,8 +268,8 @@ class RoseEntity {
         const baseLen = isSmallMobile ? canvas.height * 0.35 : (isMobile ? canvas.height * 0.40 : canvas.height * 0.6);
         const len = baseLen + Math.random() * (isMobile ? 40 : 100);
 
-        // CENTRAR VERTICALMENTE EN MÓVIL - Ajustar posición Y inicial
-        const startY = isMobile ? canvas.height * 0.7 : canvas.height + 20;
+        // CORREGIDO - Las rosas tocan el suelo en todas las pantallas
+        const startY = canvas.height + 20;
 
         this.stem = new Stem(canvas.width / 2, startY, len, myAngle, (Math.random() - 0.5) * 1.5);
         this.head = new RoseHead(this.stem);
